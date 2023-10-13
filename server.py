@@ -3,15 +3,15 @@ from flask import Flask, request, Response, render_template
 import numpy as np
 import os
 from PPE_check import process_frame, save_intervals
-
+from config import VideoProcessingConfig
 app = Flask(__name__)
 
-
+config = VideoProcessingConfig()
 
 def generate_frames():
     print(os.getcwd())
 
-    video = cv2.VideoCapture('../../Thingy-Detector/hats1.mp4')  # Use your video file
+    video = cv2.VideoCapture(config.video_path)  # Use your video file
     frame_idx = 0
     while True:
         success, frame = video.read()

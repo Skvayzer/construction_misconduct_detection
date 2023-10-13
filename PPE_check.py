@@ -549,14 +549,14 @@ def process_frame(frame, frame_idx):
     if video_time - config.start_time >= config.time_period:
         # Determine if this interval is safe or unsafe
         misconduct_detection_ratio = config.misconduct_count / config.frame_count
-        if misconduct_detection_ratio > config.safe_threshold or misconduct_count > config.unsafe_count_threshold:
-            config.safety_intervals.append((start_time, video_time, 0))
+        if misconduct_detection_ratio > config.safe_threshold or config.misconduct_count > config.unsafe_count_threshold:
+            config.safety_intervals.append((config.start_time, video_time, 0))
         else:
-            config.safety_intervals.append((start_time, video_time, 1))
+            config.safety_intervals.append((config.start_time, video_time, 1))
 
         # Reset variables for the next interval
-        misconduct_count = 0
-        start_time = video_time
+        config.misconduct_count = 0
+        config.start_time = video_time
         config.frame_count = 0
 
 
