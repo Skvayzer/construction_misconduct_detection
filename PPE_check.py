@@ -27,13 +27,11 @@ from collections import Counter
 from tools.processing import *
 from ultralytics import YOLO
 import pandas as pd
-from config import VideoProcessingConfig
-
+import config
 
 import os
 print(os.getcwd())
 
-config = VideoProcessingConfig()
 
 
 

@@ -2,11 +2,12 @@ import cv2
 from flask import Flask, request, Response, render_template
 import numpy as np
 import os
-from PPE_check import process_frame, save_intervals
-from config import VideoProcessingConfig
+import config
 app = Flask(__name__)
 
-config = VideoProcessingConfig()
+
+from PPE_check import process_frame, save_intervals
+
 
 def generate_frames():
     print(os.getcwd())
