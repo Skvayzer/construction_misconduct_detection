@@ -5,10 +5,26 @@
 </head>
 <body>
     <h1>Video Processing</h1>
-    <video id="video" autoplay></video>
+    <img id="video" src="{{ url_for('video') }}" alt="Video Stream" />
+    <!-- <p id="statistics">Statistics: Loading...</p>
     <script>
-        const video = document.getElementById('video');
-        video.src = '/video';
-    </script>
+        var video = document.getElementById('video');
+        var statistics = document.getElementById('statistics');
+        
+        video.addEventListener('load', function() {
+            setInterval(function() {
+                fetch('/video', { headers: { 'Cache-Control': 'no-store' }})
+                    .then(response => response.text())
+                    .then(data => {
+                        var lines = data.split('\r\n');
+                        var frameData = lines.find(line => line.startsWith('Content-Type: image/jpeg'));
+                        var statisticsData = lines.find(line => line.startsWith('Content-Type: text/plain'));
+                        
+                        video.src = 'data:image/jpeg;base64,' + frameData.substring(frameData.indexOf('\r\n') + 4);
+                        statistics.innerText = statisticsData.substring(statisticsData.indexOf('\r\n') + 4);
+                    });
+            }, 1000);  // Update statistics every 1 second (adjust as needed)
+        });
+    </script> -->
 </body>
 </html>
