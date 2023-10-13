@@ -18,11 +18,14 @@ def generate_frames():
         if not success:
             break
 
-        processed_frame = process_frame(frame, frame_idx)
+        processed_frame, safety_intervals = process_frame(frame, frame_idx)
+        print(safety_intervals)
         _, buffer = cv2.imencode('.jpg', processed_frame)
         frame_bytes = buffer.tobytes()
 
+        # frame_dimensions = f"Frame Dimensions: {frame.shape[1]}x{frame.shape[0]}"
         yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+               # b'Content-Type: text/plain\r\n\r\n' + frame_dimensions.encode() + b'\r\n')
         frame_idx += 1
 
 @app.route('/')
@@ -31,7 +34,7 @@ def index():
 
 @app.route('/save_result')
 def save_result():
-    save_intervals()
+    return save_intervals()
 
 @app.route('/video')
 def video():
