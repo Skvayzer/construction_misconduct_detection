@@ -561,11 +561,12 @@ def process_frame(frame, frame_idx):
 
 
 
-    return draw_frame
+    return draw_frame, config.safety_intervals
 
 def save_intervals():
     # Save the results to a file
     with open('safety_results.txt', 'w') as file:
         for interval in config.safety_intervals:
             file.write(f'{interval[0]} - {interval[1]} : {interval[2]}\n')
+    return config.safety_intervals
 
