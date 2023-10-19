@@ -30,8 +30,11 @@ deepsort_model = 'weights/mars-small128.pb'
 yolo_path = 'weights/best_yolo8_100epochs.pt'
 pose_model_cfg = '../mmpose/configs/body_2d_keypoint/topdown_heatmap/coco/td-hm_hrnet-w32_8xb64-210e_coco-256x192.py'
 pose_ckpt = 'https://download.openmmlab.com/mmpose/v1/body_2d_keypoint/topdown_heatmap/coco/td-hm_hrnet-w32_8xb64-210e_coco-256x192-81c58e40_20220909.pth'
-detection_config_file = '../mmdetection/configs/mask_rcnn/mask-rcnn_r50-caffe_fpn_1x_coco.py'
-detection_checkpoint_file = 'https://download.openmmlab.com/mmdetection/v2.0/mask_rcnn/mask_rcnn_r50_caffe_fpn_1x_coco/mask_rcnn_r50_caffe_fpn_1x_coco_bbox_mAP-0.38__segm_mAP-0.344_20200504_231812-0ebd1859.pth'
+# detection_config_file = '../mmdetection/configs/mask_rcnn/mask-rcnn_r50-caffe_fpn_1x_coco.py'
+# detection_checkpoint_file = 'https://download.openmmlab.com/mmdetection/v2.0/mask_rcnn/mask_rcnn_r50_caffe_fpn_1x_coco/mask_rcnn_r50_caffe_fpn_1x_coco_bbox_mAP-0.38__segm_mAP-0.344_20200504_231812-0ebd1859.pth'
+
+detection_config_file = 'mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_amp-1x_coco.py'
+detection_checkpoint_file = 'https://download.openmmlab.com/mmdetection/v2.0/fp16/faster_rcnn_r50_fpn_fp16_1x_coco/faster_rcnn_r50_fpn_fp16_1x_coco_20200204-d4dc1471.pth'
 
 
 # The interval of show (ms), 0 is block
