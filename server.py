@@ -3,6 +3,8 @@ from flask import Flask, request, Response, render_template
 import numpy as np
 import os
 import config
+import time
+
 app = Flask(__name__)
 
 
@@ -14,6 +16,9 @@ def generate_frames():
 
     video = cv2.VideoCapture(config.video_path)  # Use your video file
     frame_idx = 0
+    start_time = time.time()
+    x = 1 # displays the frame rate every 1 second
+    counter = 0
     while True:
         success, frame = video.read()
         if not success:
@@ -28,6 +33,12 @@ def generate_frames():
         yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
                # b'Content-Type: text/plain\r\n\r\n' + frame_dimensions.encode() + b'\r\n')
         frame_idx += 1
+
+        counter+=1
+        if (time.time() - start_time) > x :
+            print("FPS: ", counter / (time.time() - start_time))
+            counter = 0
+            start_time = time.time()
 
 @app.route('/')
 def index():
